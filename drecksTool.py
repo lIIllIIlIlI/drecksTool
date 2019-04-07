@@ -4,7 +4,7 @@ from tkinter import messagebox
 import time
 
 start = time.time()
-zehnMinuten = 1
+zehnMinuten = 600
 noInitialVote = 1
 
 votes = {'doors': 0,
