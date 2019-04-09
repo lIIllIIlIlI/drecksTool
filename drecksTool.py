@@ -2,6 +2,9 @@
 import tkinter as tk
 from tkinter import messagebox
 import time
+from pathlib import Path
+import csv
+import pickle
 
 start = time.time()
 zehnMinuten = 600
@@ -19,7 +22,12 @@ votes = {'doors': 0,
          }
 
 results = {'module' : 'test', 'counter': 0}     
-
+try:    
+    with open('data.csv', 'rb') as testfile:
+        votes = pickle.load(testfile)
+        results = pickle.load(testfile)
+except:
+    print("Started first time")
 
 window = tk.Tk()
 window.configure(background = 'darkgrey')
@@ -33,6 +41,9 @@ def updateResults():
         if votes[tool] > results['counter']:
             results['counter'] = votes[tool]
             results['module'] = tool
+    with open('data.csv', 'wb') as testfile:
+        pickle.dump(votes, testfile)
+        pickle.dump(results, testfile)
         
 def doorsCallBack():
     global start, votes, zehnMinuten, noInitialVote
@@ -45,8 +56,11 @@ def doorsCallBack():
         if(noInitialVote):
             noInitialVote = 0
     else:
-        messagebox.showinfo( "Be patient", "Wait {} more seconds".format(6000 - int(pastTime)))
+        messagebox.showinfo( "Be patient", "Wait {} more seconds".format(600 - int(pastTime)))
     noInitialVote = 0
+    with open('data.csv', 'wb') as testfile:
+        pickle.dump(votes, testfile)
+        pickle.dump(results, testfile)
         
 def tessyCallBack():
     global start, votes, zehnMinuten, noInitialVote
@@ -59,8 +73,11 @@ def tessyCallBack():
         if(noInitialVote):
             noInitialVote = 0
     else:
-        messagebox.showinfo( "Be patient", "Wait {} more seconds".format(6000 - int(pastTime)))
+        messagebox.showinfo( "Be patient", "Wait {} more seconds".format(600 - int(pastTime)))
     noInitialVote = 0
+    with open('data.csv', 'wb') as testfile:
+        pickle.dump(votes, testfile)
+        pickle.dump(results, testfile)
         
 def canApeCallBack():
     global start, votes, zehnMinuten, noInitialVote
@@ -73,8 +90,11 @@ def canApeCallBack():
         if(noInitialVote):
             noInitialVote = 0
     else:
-        messagebox.showinfo( "Be patient", "Wait {} more seconds".format(6000 - int(pastTime)))
+        messagebox.showinfo( "Be patient", "Wait {} more seconds".format(600 - int(pastTime)))
     noInitialVote = 0
+    with open('data.csv', 'wb') as testfile:
+        pickle.dump(votes, testfile)
+        pickle.dump(results, testfile)
 
 def eclipseCallBack():
     global start, votes, zehnMinuten, noInitialVote
@@ -87,8 +107,11 @@ def eclipseCallBack():
         if(noInitialVote):
             noInitialVote = 0
     else:
-        messagebox.showinfo( "Be patient", "Wait {} more seconds".format(6000 - int(pastTime)))
+        messagebox.showinfo( "Be patient", "Wait {} more seconds".format(600 - int(pastTime)))
     noInitialVote = 0
+    with open('data.csv', 'wb') as testfile:
+        pickle.dump(votes, testfile)
+        pickle.dump(results, testfile)
     
 def eaCallBack():
     global start, votes, zehnMinuten, noInitialVote
@@ -101,8 +124,11 @@ def eaCallBack():
         if(noInitialVote):
             noInitialVote = 0
     else:
-        messagebox.showinfo( "Be patient", "Wait {} more seconds".format(6000 - int(pastTime)))
+        messagebox.showinfo( "Be patient", "Wait {} more seconds".format(600 - int(pastTime)))
     noInitialVote = 0
+    with open('data.csv', 'wb') as testfile:
+        pickle.dump(votes, testfile)
+        pickle.dump(results, testfile)
         
 def notepadCallBack():
     global start, votes, zehnMinuten, noInitialVote
@@ -115,8 +141,11 @@ def notepadCallBack():
         if(noInitialVote):
             noInitialVote = 0
     else:
-        messagebox.showinfo( "Be patient", "Wait {} more seconds".format(6000 - int(pastTime)))
+        messagebox.showinfo( "Be patient", "Wait {} more seconds".format(600 - int(pastTime)))
     noInitialVote = 0
+    with open('data.csv', 'wb') as testfile:
+        pickle.dump(votes, testfile)
+        pickle.dump(results, testfile)
         
 def mplabCallBack():
     global start, votes, zehnMinuten, noInitialVote
@@ -129,8 +158,11 @@ def mplabCallBack():
         if(noInitialVote):
             noInitialVote = 0
     else:
-        messagebox.showinfo( "Be patient", "Wait {} more seconds".format(6000 - int(pastTime)))
+        messagebox.showinfo( "Be patient", "Wait {} more seconds".format(600 - int(pastTime)))
     noInitialVote = 0
+    with open('data.csv', 'wb') as testfile:
+        pickle.dump(votes, testfile)
+        pickle.dump(results, testfile)
     
 def lotusCallBack():
     global start, votes, zehnMinuten, noInitialVote
@@ -143,8 +175,11 @@ def lotusCallBack():
         if(noInitialVote):
             noInitialVote = 0
     else:
-        messagebox.showinfo( "Be patient", "Wait {} more seconds".format(6000 - int(pastTime)))
+        messagebox.showinfo( "Be patient", "Wait {} more seconds".format(600 - int(pastTime)))
     noInitialVote = 0
+    with open('data.csv', 'wb') as testfile:
+        pickle.dump(votes, testfile)
+        pickle.dump(results, testfile)
         
 def bobCallBack():
     global start, votes, zehnMinuten, noInitialVote
@@ -162,7 +197,10 @@ def bobCallBack():
         if(noInitialVote):
             noInitialVote = 0
     else:
-        messagebox.showinfo( "Be patient", "Wait {} more seconds".format(6000 - int(pastTime)))
+        messagebox.showinfo( "Be patient", "Wait {} more seconds".format(600 - int(pastTime)))
+    with open('data.csv', 'wb') as testfile:
+        pickle.dump(votes, testfile)
+        pickle.dump(results, testfile)
     
         
 def resultsCallBack():
@@ -222,11 +260,6 @@ labelframe.pack(fill="both", expand="yes", )
 
 left = tk.Label(labelframe, text="Everyone please feel free to vote your favourite Dreckstool of the day once every 10 minutes :)")
 left.pack()
-#Everyone feel free to vote for you favourite Dreckstool once every 10 minutes
-#Dieses Tool laesst den Nutzer alle 10 Minuten einen Vote f�r das Dreckstool des Tages abgeben. Jeder Mitarbeiter der Firma ist eingeladen an der Umfrage teilzunehmen.
+
 
 window.mainloop()
- 
- 
- 
- 
